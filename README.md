@@ -1,5 +1,5 @@
 # py-cordic
-CORDIC Algorithm with rotation mode using Python
+CORDIC Algorithm with rotation mode using Python by ABJ
 
 1. Create Python Virtual Environment
 $virtualenv venv python3
