@@ -55,16 +55,18 @@ def get_sin_cosine_value(angle_degrees):
     angle_radians = math.radians(angle_degrees)
     f_sin_value = math.sin(angle_radians)
     f_cosine_value = math.cos(angle_radians)
+    angle_degrees = angle_degrees%360
+    angle_binary_32 = int((angle_degrees/360)*2**32)
+    angle_binary_16 = int((angle_degrees/360)*2**16)
 
     # i_sin_value = int(f_sin_value*(2**16))
     # i_cosine_value = int(f_cosine_value*(2**16))
 
     i_sin_value = float_to_int16(f_sin_value)
     i_cosine_value = float_to_int16(f_cosine_value)
+   
 
-    
-
-    print(f"{angle_degrees} \t\t{angle_radians:.4f} \t\t{f_sin_value:.3f} ({i_sin_value:05d})\
+    print(f"{angle_degrees} \t\t{angle_radians:.4f} \t\t{angle_binary_32:032b} \t{f_sin_value:.3f} ({i_sin_value:05d})\
               \t {to_twos_complement_binary(i_sin_value,16)} \t{f_cosine_value:.3f} ({i_cosine_value:05d})\
                       \t {to_twos_complement_binary(i_cosine_value,16)}")
 
@@ -73,12 +75,9 @@ if __name__ == "__main__":
     print("Demo CORDIC Algorithm")
     degrees = [0,30,45,60,90,120,135,150,180,210,225,240,270,300,315,330,360]
 
-    print("Angle (deg)\tAngle (rad)\tSin\t\t\t\t\t\tCosine")
+    print("Angle (deg)\tAngle (rad)\tAngle (binary 32-bit)\t\t\tSin\t\t\t\t\t\t\tCosine")
     for degree in degrees:
         get_sin_cosine_value(degree)
-
-
-
 
     # evaluate_cordic_calculation(angle_degrees = 30, iterations=10, debug=False)
     # evaluate_cordic_calculation(angle_degrees = 30, iterations=20, debug=False)
